@@ -1,0 +1,92 @@
+{
+    "name": "Release",
+    "fields": [
+        {
+            "fieldName": "date",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "territory",
+            "fieldType": "Territory",
+            "fieldValues": "CETC_WEST,HUDSON,SED,NED,CHICAGO,PSCC,UNIFIED",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "build",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "releaseLetter",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "prefixLetter",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "databaseVersion",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "wsVersion",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "tmaVersion",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "port",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "newFeatures",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        },
+        {
+            "fieldName": "updatedFeatures",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        },
+        {
+            "fieldName": "current",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "spr",
+            "otherEntityRelationshipName": "release",
+            "relationshipName": "spr"
+        }
+    ],
+    "changelogDate": "20190507012431",
+    "entityTableName": "release",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "searchEngine": "elasticsearch"
+}

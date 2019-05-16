@@ -1,0 +1,82 @@
+// JDL definition for application 'amtecPortal' generated with command 'jhipster export-jdl'
+
+enum Territory {
+	CETC_WEST,
+    HUDSON,
+    SED,
+    NED,
+    CHICAGO,
+    PSCC,
+    UNIFIED
+}
+
+enum Priority {
+	SHOWSTOPPER,
+    EMERGENCY,
+    HIGH,
+    LOW,
+    ROUTINE,
+    DEFER
+}
+
+enum Resolution {
+	NEW,
+    RELEASED,
+    DUPLICATE,
+    TESTED,
+    FIXED,
+    PARTIALLY_FIXED,
+    REVIEWED,
+    CANNOT_REPRODUCE
+}
+
+entity Release {
+	date Instant required,
+    territory Territory required,
+    build Integer required,
+    releaseLetter String required,
+    prefixLetter String,
+    databaseVersion String required,
+    wsVersion String,
+    tmaVersion String,
+    port Integer,
+    newFeatures TextBlob,
+    updatedFeatures TextBlob,
+    current Boolean required
+}
+
+entity Spr {
+	territory Territory required,
+    number Integer required,
+    fullNumber String required,
+    description TextBlob,
+    priority Priority,
+    resolution Resolution,
+    jiraLink String,
+    reviewerId Long
+}
+
+entity OutOfOffice {
+	start Instant required,
+    end Instant required,
+    description TextBlob
+}
+
+entity TeamEvent {
+	start Instant required,
+    end Instant,
+    description TextBlob
+}
+
+relationship OneToMany{
+	Release{spr(fullNumber)} to Spr{release}
+}
+relationship ManyToOne {
+	Spr{user(login)} to User,
+    OutOfOffice{user(login)} to User
+}
+
+service * with serviceClass
+search TeamEvent, OutOfOffice, Spr, Release with elasticsearch
+filter Spr, Release, TeamEvent, OutOfOffice
+

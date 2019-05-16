@@ -1,0 +1,22 @@
+version: '2'
+services:
+  amtecportal-app:
+    image: amtecportal
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - SPRING_PROFILES_ACTIVE=prod,swagger
+      - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://amtecportal-postgresql:5432/AmtecPortal
+      - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+      - SPRING_DATA_JEST_URI=http://amtecportal-elasticsearch:9200
+      - SPRING_ELASTICSEARCH_REST_URIS=http://amtecportal-elasticsearch:9200
+    ports:
+      - 9020:9020
+  amtecportal-postgresql:
+    extends:
+      file: postgresql.yml
+      service: amtecportal-postgresql
+  amtecportal-elasticsearch:
+    extends:
+      file: elasticsearch.yml
+      service: amtecportal-elasticsearch

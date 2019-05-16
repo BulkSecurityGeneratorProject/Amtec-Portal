@@ -1,0 +1,76 @@
+{
+    "name": "Spr",
+    "fields": [
+        {
+            "fieldName": "territory",
+            "fieldType": "Territory",
+            "fieldValues": "CETC_WEST,HUDSON,SED,NED,CHICAGO,PSCC,UNIFIED",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "number",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "fullNumber",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        },
+        {
+            "fieldName": "priority",
+            "fieldType": "Priority",
+            "fieldValues": "SHOWSTOPPER,EMERGENCY,HIGH,LOW,ROUTINE,DEFER"
+        },
+        {
+            "fieldName": "resolution",
+            "fieldType": "Resolution",
+            "fieldValues": "NEW,RELEASED,DUPLICATE,TESTED,FIXED,PARTIALLY_FIXED,REVIEWED,CANNOT_REPRODUCE"
+        },
+        {
+            "fieldName": "jiraLink",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "reviewerId",
+            "fieldType": "Long"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "spr",
+            "relationshipName": "user",
+            "otherEntityField": "login"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "release",
+            "otherEntityRelationshipName": "spr",
+            "relationshipName": "release",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190507012432",
+    "entityTableName": "spr",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "searchEngine": "elasticsearch"
+}
